@@ -1,0 +1,32 @@
+npm install @angular/cdk
+npm install @angular/localize
+npm install  @angular/material
+npm install @angular/fire
+npm install firebase
+npm install @ngrx/effects
+npm install @ngrx/entity
+npm install @ngrx/store
+npm install @ngrx/store-devtools
+npm install ngx-image-cropper
+npm install -g firebase-tools
+- Todas las dependencias están en el Package.json => dependecies
+Metodología: BEM
+https://material.io/resources/color/#!/?view.left=0&view.right=0
+ng g module pages/demo --routing  => Crear routing module
+
+
+
+*************PREGUNTAS E INVESTIGACION************
+fundamentos de ciencias de la computacion
+notacion asintotica
+estructura de datos
+nivel de aislamiento base de datos
+Middleware
+complejidad algoritmica
+dom virtual angular
+- Aprender que hace cada archivo en un proyecto de angular
+-Q es un decorator en javascript y en gral
+- formulario reactivo vs el otro
+- Promise vs subscribers
+- bytes
+- Angular artefactos o artifacts: Module en Angular (Video 45)
