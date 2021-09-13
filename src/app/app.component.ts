@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
   constructor(private fireStore: AngularFirestore) {}
 
   ngOnInit(): void {
-    this.fireStore
-      .collection('test')
-      .snapshotChanges()
-      .subscribe((data) => {
-        console.log(data.map((d) => d.payload.doc.data()));
-      });
+    // this.fireStore
+    //   .collection('test')
+    //   .snapshotChanges()
+    //   .subscribe((data) => {
+    //     console.log(data.map((d) => d.payload.doc.data()));
+    //   });
   }
 }

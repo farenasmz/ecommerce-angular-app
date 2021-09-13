@@ -30,3 +30,6 @@ dom virtual angular
 - Promise vs subscribers
 - bytes
 - Angular artefactos o artifacts: Module en Angular (Video 45)
+- ng-content, ng-cotainer
+- providers, NG_VALUE_ACCESSOR, useExisting: forwardRef(),multi: true
+-
