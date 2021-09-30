@@ -1,6 +1,8 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './store';
+import * as fromDictionaries from './store/dictionaries';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,12 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class AppComponent implements OnInit {
   title = 'ecommerce-angular-app';
 
-  /**
-   *
-   */
-  constructor(private fireStore: AngularFirestore) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(new fromDictionaries.Read());
+
+
     // this.fireStore
     //   .collection('test')
     //   .snapshotChanges()

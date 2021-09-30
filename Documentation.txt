@@ -32,4 +32,5 @@ dom virtual angular
 - Angular artefactos o artifacts: Module en Angular (Video 45)
 - ng-content, ng-cotainer
 - providers, NG_VALUE_ACCESSOR, useExisting: forwardRef(),multi: true
--
+- event streamer reactive app
+- changeDetection: ChangeDetectionStrategy.OnPush

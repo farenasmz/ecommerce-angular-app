@@ -10,4 +10,8 @@ export const environment = {
     appId: '1:946572349890:web:a6f6ef41784e44d320065b',
     measurementId: 'G-LX24F61H97',
   },
+  actionCodeSettings: {
+    url: 'http://localhost:5200/demo',
+    handleCodeInApp: true,
+  },
 };

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire/compat';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -20,6 +23,11 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { NotificationModule } from './services/notification/notification.module';
+import { reducers, effects } from './store';
+
+const StoreDevTools = !environment.production
+  ? StoreDevtoolsModule.instrument({ maxAge: 50 })
+  : [];
 
 const _APP_DATE_FORMATS: MatDateFormats = {
   parse: {
@@ -49,6 +57,14 @@ const _APP_DATE_FORMATS: MatDateFormats = {
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    EffectsModule.forRoot(effects),
+    StoreDevTools,
     NotificationModule.forRoot(),
   ],
   providers: [
