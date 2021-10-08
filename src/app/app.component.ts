@@ -1,8 +1,10 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from './store';
+import * as fromUsers from './store/user';
 import * as fromDictionaries from './store/dictionaries';
+import { Observable } from 'rxjs';
+import * as fromUser from '@app/store/user';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,13 @@ import * as fromDictionaries from './store/dictionaries';
 })
 export class AppComponent implements OnInit {
   title = 'ecommerce-angular-app';
-
+  isAuthorized$!: Observable<boolean>;
   constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit(): void {
+    this.isAuthorized$ = this.store.pipe(select(fromUsers.getIsAuthorized));
+    this.store.dispatch(new fromUsers.Init());
     this.store.dispatch(new fromDictionaries.Read());
-
 
     // this.fireStore
     //   .collection('test')
@@ -24,5 +27,13 @@ export class AppComponent implements OnInit {
     //   .subscribe((data) => {
     //     console.log(data.map((d) => d.payload.doc.data()));
     //   });
+  }
+
+  onSignOut(): void {
+    this.store.dispatch(new fromUsers.SignOutEmail());
+  }
+
+  SuperClick():void{
+    this.store.dispatch(new fromUsers.Init());
   }
 }

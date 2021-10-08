@@ -87,6 +87,9 @@ export class UserEffects {
               .pipe(
                 //Tomar primer valor
                 take(1),
+                tap(() => {
+                  this.router.navigate(['/']);
+                }),
                 map(
                   (user) =>
                     new fromActions.SignInEmailSuccess(
@@ -113,6 +116,9 @@ export class UserEffects {
         //Convierte una promesa a observable
         from(this.afAuto.signOut()).pipe(
           map(() => new fromActions.SignOutEmail()),
+          tap(() => {
+            this.router.navigate(['/auth/login']);
+          }),
           catchError((error) => {
             this.notification.error(error.message);
             //Crea un observable
@@ -124,25 +130,26 @@ export class UserEffects {
   );
 
   init: Observable<Action> = createEffect(() =>
-  this.actions.pipe(
-    ofType(fromActions.Types.INIT),
-    switchMap(() => this.afAuto.authState.pipe(take(1))),
-    switchMap(authState =>
-      {
-if(authState)
-{
-return this.afs.doc<User>(`users/${authState.uid}`).valueChanges().pipe(
-  take(1),
-  map(user => new fromActions.InitAuthorized(authState.uid, user || null)),
-  catchError(err => of(new fromActions.InitError(err.message)))
-);
-}
-else
-{
-  return of(new fromActions.InitUnAuthorized());
-}
+    this.actions.pipe(
+      ofType(fromActions.Types.INIT),
+      switchMap(() => this.afAuto.authState.pipe(take(1))),
+      switchMap((authState) => {
+        if (authState) {
+          return this.afs
+            .doc<User>(`users/${authState.uid}`)
+            .valueChanges()
+            .pipe(
+              take(1),
+              map(
+                (user) =>
+                  new fromActions.InitAuthorized(authState.uid, user || null)
+              ),
+              catchError((err) => of(new fromActions.InitError(err.message)))
+            );
+        } else {
+          return of(new fromActions.InitUnAuthorized());
+        }
       })
     )
-  )
-);
+  );
 }

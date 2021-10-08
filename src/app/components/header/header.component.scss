@@ -8,6 +8,7 @@
     font-size: 1.2em;
     display: inline-flex;
     align-items: center;
+    cursor: pointer;
   }
 
   &__navigation {
@@ -16,8 +17,7 @@
   }
 }
 
-.app-a
-{
+.app-a {
   margin-left: 1em;
   margin-right: 0;
 }

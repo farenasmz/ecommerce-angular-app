@@ -34,3 +34,6 @@ dom virtual angular
 - providers, NG_VALUE_ACCESSOR, useExisting: forwardRef(),multi: true
 - event streamer reactive app
 - changeDetection: ChangeDetectionStrategy.OnPush
+- pipe, select, async para los pipes (Pipe async)
+- HostListener: Es un método decorator de angular q es usado para escuchar  manejar eventos del DOM (lo usé para el dialog del fileupload)
+- this.destroy.next();

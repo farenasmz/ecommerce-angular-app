@@ -3,15 +3,27 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import {
+  FormFieldModule,
+  InputModule,
+  PasswordModule,
+} from '@app/shared/controls';
 
+import { ButtonModule } from '@app/shared';
+import { SpinnerModule } from '@app/shared/indicators/spinner/spinner.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
-    LoginRoutingModule
-  ]
+    LoginRoutingModule,
+    ReactiveFormsModule,
+    FormFieldModule,
+    InputModule,
+    PasswordModule,
+    ButtonModule,
+    SpinnerModule,
+  ],
 })
-export class LoginModule { }
+export class LoginModule {}
