@@ -55,7 +55,7 @@ export class UploadComponent implements OnInit, OnDestroy {
       finalize(async () => {
         const storageRefObservable$ = storageRef.getDownloadURL();
         this.downloadUrl = await lastValueFrom(storageRefObservable$);
-        this.completed.next('URL_HM');
+        this.completed.next(this.downloadUrl);
       })
     );
   }

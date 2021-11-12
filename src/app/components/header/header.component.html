@@ -14,6 +14,7 @@
     </div>
     <a class="app-a" routerLink="demo" routerLinkActive="app-a_active">Demo</a>
     <div *ngIf="isAuthorized">
+      <a class="app-a" routerLink="profile/new">Perfil</a>
       <a class="app-a" (click)="onSignOut()">Cerrar sesión</a>
     </div>
   </div>

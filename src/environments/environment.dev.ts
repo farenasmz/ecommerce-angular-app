@@ -11,7 +11,7 @@ export const environment = {
     measurementId: 'G-LX24F61H97',
   },
   actionCodeSettings: {
-    url: 'http://localhost:5200/demo',
+    url: 'http://localhost:5200/profile/new',
     handleCodeInApp: true,
   },
 };

@@ -1,0 +1,58 @@
+<form [formGroup]="form" autocomplete="off" novalidate>
+  <app-form-field
+    label="Salary"
+    [required]="true"
+    [control]="form.controls.expectedSalary"
+  >
+    <app-input formControlName="expectedSalary"></app-input>
+  </app-form-field>
+
+  <app-form-field label="Laboral experience" [required]="true">
+    <app-experience
+      [parent]="form"
+      [values]="value ? value.experiences : []"
+      name="experience"
+    >
+    </app-experience>
+  </app-form-field>
+
+  <app-form-field
+    label="Specialization"
+    [required]="true"
+    [control]="form.controls.specialization"
+  >
+    <app-select
+      formControlName="specialization"
+      [items]="
+        controls.specializations.items ? controls.specializations.items : []
+      "
+      (changed)="
+        controls.specialization.changed
+          ? controls.specialization.changed()
+          : null
+      "
+    ></app-select>
+  </app-form-field>
+
+  <app-form-field
+    label="Qualification"
+    [required]="true"
+    [control]="form.controls.qualification"
+    ><app-select
+      formControlName="qualification"
+      [items]="
+        controls.specializations.items ? controls.specializations.items : []
+      "
+    ></app-select
+  ></app-form-field>
+
+  <app-form-field
+    label="Skills"
+    [required]="true"
+    [control]="form.controls.skills"
+    ><app-checkboxes
+      formControlName="skills"
+      [items]="controls.skills.items ? controls.skills.items : []"
+    ></app-checkboxes
+  ></app-form-field>
+</form>
