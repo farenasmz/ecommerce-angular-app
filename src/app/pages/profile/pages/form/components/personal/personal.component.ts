@@ -16,9 +16,9 @@ import { regexErrors } from '@app/shared/utils/regex';
 import { markFormGroupTouched } from '../../../../../../shared/utils/form';
 
 export interface PersonalForm {
-  name: string;
-  photoUrl: string;
-  country: string;
+  name: string | null;
+  photoUrl: string | null;
+  country: string | null;
 }
 
 @Component({

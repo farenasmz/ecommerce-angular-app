@@ -9,10 +9,16 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import * as fromDictionaries from '@app/store/dictionaries/dictionaries.models';
 import * as fromSelectors from '@app/store/dictionaries/dictionaries.selectors';
 import { StepperService } from './components/stepper/services/stepper.service';
-import { Dictionaries } from '@app/store/dictionaries/dictionaries.models';
 import * as fromRoot from '@app/store';
 import { select, Store } from '@ngrx/store';
 import { PersonalForm } from './components/personal/personal.component';
+import * as fromUser from '@app/store/user';
+import { ActivatedRoute, Router } from '@angular/router';
+
+export interface ProfileForm {
+  personal: PersonalForm | null;
+  professional: ProfesionalForm | null;
+}
 
 @Component({
   selector: 'app-form',
@@ -24,8 +30,11 @@ export class FormComponent implements OnInit, OnDestroy {
   private destroy = new Subject<any>();
   dictionaries$!: Observable<fromDictionaries.Dictionaries>;
   dictionaryIsReady$!: Observable<boolean>;
+  private user!: fromUser.User;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     public service: StepperService,
     private store: Store<fromRoot.State>
   ) {}
@@ -35,6 +44,8 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.user = this.route.snapshot.data.user;
+
     this.dictionaries$ = this.store.pipe(
       select(fromSelectors.getDictionaries)
     ) as Observable<any>;
@@ -66,8 +77,7 @@ export class FormComponent implements OnInit, OnDestroy {
     console.log(data);
   }
 
-  onChangedProfessional(data: ProfesionalForm)
-  {
-    console.log("Professional Form"+ data);
+  onChangedProfessional(data: ProfesionalForm) {
+    console.log('Professional Form' + data);
   }
 }

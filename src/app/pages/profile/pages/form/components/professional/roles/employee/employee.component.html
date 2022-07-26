@@ -24,7 +24,7 @@
     <app-select
       formControlName="specialization"
       [items]="
-        controls.specializations.items ? controls.specializations.items : []
+        controls.specialization.items ? controls.specialization.items : []
       "
       (changed)="
         controls.specialization.changed
@@ -41,7 +41,7 @@
     ><app-select
       formControlName="qualification"
       [items]="
-        controls.specializations.items ? controls.specializations.items : []
+        controls.qualification.items ? controls.qualification.items : []
       "
     ></app-select
   ></app-form-field>

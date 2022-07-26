@@ -11,7 +11,7 @@ import { Dictionaries } from '@app/store/dictionaries';
 import { EmployeeForm } from '../employee/employee.component';
 import { ExperienceForm } from '../employee/experience/experience.component';
 
-export interface RecruiteForm {
+export interface RecruiterForm {
   companyName: string;
   employeesCount: number;
   experiences: ExperienceForm[];
@@ -25,7 +25,7 @@ export interface RecruiteForm {
 export class RecruiterComponent implements OnInit, OnDestroy {
   @Input() parent!: FormGroup;
   @Input() name!: string;
-  @Input() value!: RecruiteForm | EmployeeForm;
+  @Input() value!: RecruiterForm | EmployeeForm | null | undefined;
   @Input() dictionaries!: Dictionaries | null;
   form!: FormGroup;
 

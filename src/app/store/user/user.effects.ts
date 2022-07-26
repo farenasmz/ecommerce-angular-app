@@ -152,4 +152,42 @@ export class UserEffects {
       })
     )
   );
+
+  //CREATE
+
+  create: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(fromActions.Types.CREATE),
+      map((action: fromActions.Create) => action.user),
+      withLatestFrom(this.afAuto.authState.pipe(take(1))),
+      map(([user, state]) => ({
+        ...user,
+        uid: state?.uid || '',
+        email: state?.email || '',
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      })),
+      switchMap((user: User) =>
+        from(this.afs.collection('users').doc(user.uid).set(user)).pipe(
+          tap(() => this.router.navigate(['/profile', user.uid])),
+          map(() => new fromActions.CreateSuccess(user)),
+          catchError((err) => of(new fromActions.CreateError(err.message)))
+        )
+      )
+    )
+  );
+
+  //Update
+  Update: Observable<Action> = createEffect(() =>
+    this.actions.pipe(
+      ofType(fromActions.Types.UPDATE),
+      map((action: fromActions.Update) => action.user),
+      switchMap((user: User) =>
+        from(this.afs.collection('users').doc(user.uid).set(user)).pipe(
+          tap(() => this.router.navigate(['/profile', user.uid])),
+          map(() => new fromActions.UpdateSuccess(user)),
+          catchError((err) => of(new fromActions.UpdateError(err.message)))
+        )
+      )
+    )
+  );
 }

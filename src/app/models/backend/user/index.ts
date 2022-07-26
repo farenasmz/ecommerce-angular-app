@@ -4,13 +4,13 @@ export * from './roles';
 
 export interface User {
   uid: string;
-  name: string;
-  photoUrl: string;
-  email: string;
-  country: string;
-  about?: string;
-  roleId: string;
-  role: Employee | Recruiter;
+  name: string | null;
+  photoUrl: string | null;
+  email: string | null;
+  country: string | null;
+  about?: string | null;
+  roleId?: string | null;
+  role?: Employee | Recruiter | null;
   created: firebase.FieldValue;
   updated?: firebase.FieldValue;
 }

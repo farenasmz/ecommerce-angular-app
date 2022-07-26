@@ -14,13 +14,13 @@ import { Dictionaries } from '@app/store/dictionaries';
 import { regexErrors } from '@app/shared/utils/regex';
 import { ThrowStmt } from '@angular/compiler';
 import { markFormGroupTouched } from '@app/shared';
-import { RecruiteForm } from './roles/recruiter/recruiter.component';
+import { RecruiterForm } from './roles/recruiter/recruiter.component';
 import { EmployeeForm } from './roles/employee/employee.component';
 
 export interface ProfesionalForm {
-  about: string;
-  rolId: string;
-  role: RecruiteForm | EmployeeForm;
+  about?: string | null;
+  rolId: string | any;
+  role?: RecruiterForm | EmployeeForm | null;
 }
 
 @Component({
